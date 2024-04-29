@@ -9,10 +9,10 @@ import {
     getDoc,
 } from "./firebase";
 
-const collectionName = "patients";
+const collectionName = "books";
 
 // CREATE
-export const createPatient = async (obj: Book): Promise<string> => {
+export const createBook = async (obj: Book): Promise<string> => {
     try {
         if (!obj.title && !obj.price) {
             throw new Error("El objeto NewPatient está vacío");
@@ -22,10 +22,13 @@ export const createPatient = async (obj: Book): Promise<string> => {
 
         const bookData = { ...obj };
 
-        const books = await getBooks()
-        console.log("Data", books)
+        const books = await getBooks();
+        console.log("Data", books);
 
-        const patientExists = books.some(book => book.title === bookData.title && book.price === bookData.price)
+        const patientExists = books.some(
+            (book) =>
+                book.title === bookData.title && book.price === bookData.price
+        );
 
         if (patientExists) {
             throw new Error("El book ya existe en la base de datos");
@@ -40,8 +43,6 @@ export const createPatient = async (obj: Book): Promise<string> => {
     }
 };
 
-
-
 // READ
 export const getBooks = async (): Promise<Book[]> => {
     try {
@@ -54,5 +55,4 @@ export const getBooks = async (): Promise<Book[]> => {
         console.error("Error al obtener los books:", error);
         throw error;
     }
-
 };
