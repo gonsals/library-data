@@ -1,13 +1,5 @@
 import { Book } from "../../common/Book";
-import {
-    db,
-    collection,
-    addDoc,
-    getDocs,
-    deleteDoc,
-    doc,
-    getDoc,
-} from "./firebase";
+import { db, collection, addDoc, getDocs } from "./firebase";
 
 const collectionName = "books";
 
@@ -15,7 +7,7 @@ const collectionName = "books";
 export const createBook = async (obj: Book): Promise<string> => {
     try {
         if (!obj.title && !obj.price) {
-            throw new Error("El objeto NewPatient está vacío");
+            throw new Error("El objeto newBook está vacío");
         }
 
         const colRef = collection(db, collectionName);

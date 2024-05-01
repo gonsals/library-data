@@ -1,7 +1,7 @@
 export type Book = {
-    id: string;
+    id?: string;
     title: string;
-    price: number;
+    price: number | null;
 };
 
 //TODO https://codepen.io/HighFlyer/pen/LaXrgV
