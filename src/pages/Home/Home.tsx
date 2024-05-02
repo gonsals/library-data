@@ -11,6 +11,7 @@ const Home = () => {
     const [newBook, setNewBook] = useState<Book>({
         title: "",
         price: null,
+        author: "",
     });
 
     console.log(newBook);
@@ -36,7 +37,7 @@ const Home = () => {
             getBooks().then((data) => setBooks(data));
 
             // Limpiamos los campos del formulario
-            setNewBook({ title: "", price: null });
+            setNewBook({ title: "", price: null, author: "" });
         } catch (error) {
             if (error instanceof Error) toast.error(error.message);
             else throw error;
@@ -55,6 +56,13 @@ const Home = () => {
                     }
                 />
                 <input
+                    type="text"
+                    placeholder="Author"
+                    onChange={(e) =>
+                        setNewBook({ ...newBook, author: e.target.value })
+                    }
+                />
+                <input
                     type="number"
                     placeholder="Price"
                     onChange={(e) =>
@@ -67,9 +75,11 @@ const Home = () => {
                 <button type="submit">SEND</button>
             </form>
             <Test>
-                {books?.map((book) => (
-                    <BookRow key={book.id} {...book} />
-                ))}
+                {books.length > 0 ? (
+                    books?.map((book) => <BookRow key={book.id} {...book} />)
+                ) : (
+                    <p>Nothing in db</p>
+                )}
             </Test>
         </>
     );

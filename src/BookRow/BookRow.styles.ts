@@ -21,8 +21,6 @@ export const Container = styled.div`
     }
 
     .book:hover {
-        -webkit-transform: rotate3d(0, 1, 0, 35deg);
-        -moz-transform: rotate3d(0, 1, 0, 35deg);
         transform: rotate3d(0, 1, 0, 35deg);
     }
 
@@ -33,17 +31,9 @@ export const Container = styled.div`
     }
 
     .front {
-        -webkit-transform-style: preserve-3d;
-        -moz-transform-style: preserve-3d;
         transform-style: preserve-3d;
-        -webkit-transform-origin: 0% 50%;
-        -moz-transform-origin: 0% 50%;
         transform-origin: 0% 50%;
-        -webkit-transition: -webkit-transform 0.5s;
-        -moz-transition: -moz-transform 0.5s;
         transition: transform 0.5s;
-        -webkit-transform: translate3d(0, 0, 20px);
-        -moz-transform: translate3d(0, 0, 20px);
         transform: translate3d(0, 0, 20px);
         z-index: 10;
     }
@@ -58,25 +48,29 @@ export const Container = styled.div`
         left: -20px;
         height: 350px;
         background-color: rgba(232, 229, 234);
-        -webkit-transform: rotate3d(0, 1, 0, -90deg);
-        -moz-transform: rotate3d(0, 1, 0, -90deg);
         transform: rotate3d(0, 1, 0, -90deg);
     }
 
-    .cover .id {
+    .cover .author {
         font-size: 10px;
+        opacity: 0.8;
+        margin: 20px 0 0 20px;
     }
 
     .cover .price {
         font-size: 8pt;
+        margin: 0 20px 20px 20px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
     }
 
     .title {
         font-family: acumin-pro, sans-serif;
         font-weight: 400;
-        width: 90%;
-        opacity: 0.8;
+        font-size: 1.5rem;
         overflow-wrap: break-word;
+        margin: 0 0 0 20px;
     }
 
     .front > div {
@@ -112,8 +106,6 @@ export const Container = styled.div`
         line-height: 40px;
         padding-right: 10px;
         text-align: right;
-        -webkit-transform-origin: 0 0;
-        -moz-transform-origin: 0 0;
         transform-origin: 0 0;
         transform: rotate(90deg) translateY(-40px);
     }
@@ -121,10 +113,10 @@ export const Container = styled.div`
     .cover {
         background: linear-gradient(45deg, #dad5dc 0%, #f2ebf4 100%);
         display: flex;
-        justify-content: space-around;
+        /* justify-content: space-around; */
         flex-direction: column;
-        align-items: center;
         flex-wrap: wrap;
+        align-items: flex-start;
     }
 
     .left-side h2 {

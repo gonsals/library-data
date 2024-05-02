@@ -2,13 +2,13 @@ import { Container } from "./BookRow.styles";
 
 import { Book } from "../common/Book";
 
-const BookRow = ({ id, title, price }: Book) => {
+const BookRow = ({ title, price, author }: Book) => {
     return (
         <Container>
             <div className="book">
                 <div className="front">
                     <div className="cover">
-                        <p className="id">{id}</p>
+                        <p className="author">{author}</p>
                         <p className="title">{title}</p>
                         <p className="price">{price}€</p>
                     </div>
@@ -16,7 +16,7 @@ const BookRow = ({ id, title, price }: Book) => {
                 <div className="left-side">
                     <h2>
                         <span>{title}</span>
-                        <span>{id}</span>
+                        <span>{author}</span>
                     </h2>
                 </div>
             </div>
