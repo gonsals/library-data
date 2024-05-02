@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     z-index: 1;
+    position: relative;
     perspective: 3000px;
 
     .book {
@@ -51,32 +52,62 @@ export const Container = styled.div`
         transform: rotate3d(0, 1, 0, -90deg);
     }
 
+
     .cover .author {
-        font-size: 10px;
-        opacity: 0.8;
-        margin: 20px 0 0 20px;
+        font-size: 10pt;
+        position: absolute;
+        top: 100px;
+        right: 30px;
+        text-align:right;
     }
 
     .cover .price {
-        font-size: 8pt;
+        font-size: 10pt;
         margin: 0 20px 20px 20px;
         position: absolute;
         bottom: 0;
         right: 0;
+        max-width:80px;
+        text-align:right;
+        z-index:10
     }
 
-    .title {
-        font-family: acumin-pro, sans-serif;
-        font-weight: 400;
-        font-size: 1.5rem;
-        overflow-wrap: break-word;
-        margin: 0 0 0 20px;
+    .imagePrice{
+        position: absolute;
+        bottom: 40px;
+        right:10px;
+        z-index:1;
+        width:60px;
+        transform: rotate(-20deg) 
     }
 
-    .front > div {
+.deleteBook {
+    background-size: 30px; /* Establece el ancho de la imagen */
+    width: 40px; /* Establece el ancho del contenedor */
+    height: 40px; /* Establece la altura del contenedor */
+}
+
+
+.updateButton {
+position: absolute;
+    bottom: 100px;
+    right: 10px; 
+    font-size: .8rem;
+    z-index: 2; 
+}
+
+
+.title {
+    font-family: acumin-pro, sans-serif;
+    font-weight: 400;
+    font-size: 17pt;
+    margin: 20px 0 0 0;
+}
+
+.front > div {
         border-radius: 0 3px 3px 0;
         box-shadow: inset 4px 0 10px rgba(0, 0, 0, 0.1);
-    }
+}
 
     .front:after {
         content: "";
@@ -89,7 +120,7 @@ export const Container = styled.div`
 
     .cover:after {
         content: "";
-        position: absolute;
+        position: relative;
         top: 0;
         left: 10px;
         bottom: 0;
@@ -111,12 +142,15 @@ export const Container = styled.div`
     }
 
     .cover {
+        position:relative;
         background: linear-gradient(45deg, #dad5dc 0%, #f2ebf4 100%);
-        display: flex;
-        /* justify-content: space-around; */
-        flex-direction: column;
-        flex-wrap: wrap;
-        align-items: flex-start;
+        textarea {
+        background: transparent;
+        border: none;
+        resize: none;
+        width: auto; 
+        max-width:150px
+        }
     }
 
     .left-side h2 {
@@ -126,13 +160,12 @@ export const Container = styled.div`
     }
 
     .left-side h2 span:first-child {
-        font-weight: 400;
-        font-size: 15px;
+        font-size: 10pt;
         padding-right: 20px;
     }
 
     .left-side h2 span:last-child {
-        font-size: 10px;
+        font-size: 10pt;
         font-family: acumin-pro, sans-serif;
     }
 `;

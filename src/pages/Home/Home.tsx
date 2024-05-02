@@ -1,4 +1,4 @@
-import { Test } from "./Home.styles";
+import { Form, Test } from "./Home.styles";
 
 import { useEffect, useState } from "react";
 import { createBook, getBooks } from "../../app/services/books";
@@ -14,11 +14,13 @@ const Home = () => {
         author: "",
     });
 
-    console.log(newBook);
+
+    const renderBooks = () => getBooks().then((data) => setBooks(data));
+
 
     useEffect(() => {
-        getBooks().then((data) => setBooks(data));
-    }, [newBook]);
+        renderBooks();
+    }, []);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -47,7 +49,7 @@ const Home = () => {
     return (
         <>
             <h3>Home</h3>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     placeholder="Title"
@@ -73,10 +75,10 @@ const Home = () => {
                     }
                 />
                 <button type="submit">SEND</button>
-            </form>
+            </Form>
             <Test>
                 {books.length > 0 ? (
-                    books?.map((book) => <BookRow key={book.id} {...book} />)
+                    books?.map((book) => <BookRow key={book.id} book={book} renderBooks={renderBooks} />)
                 ) : (
                     <p>Nothing in db</p>
                 )}

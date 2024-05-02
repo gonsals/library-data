@@ -1,5 +1,5 @@
 import { Book } from "../../common/Book";
-import { db, collection, addDoc, getDocs } from "./firebase";
+import { db, collection, addDoc, getDocs, doc, updateDoc, getDoc, deleteDoc } from "./firebase";
 
 const collectionName = "books";
 
@@ -45,6 +45,46 @@ export const getBooks = async (): Promise<Book[]> => {
         });
     } catch (error) {
         console.error("Error al obtener los books:", error);
+        throw error;
+    }
+};
+
+
+// UPDATE
+export const updateBook = async (
+    id: string,
+    updatedData: Book
+): Promise<Book | null> => {
+    try {
+        const docRef = doc(db, collectionName, id);
+        const patientDataWithUpdatedTimestamp = {
+            ...updatedData
+        };
+        await updateDoc(docRef, patientDataWithUpdatedTimestamp);
+        // Después de actualizar, obtenemos el paciente actualizado
+        const updatedDocSnapshot = await getDoc(docRef);
+        if (updatedDocSnapshot.exists()) {
+            return {
+                ...updatedDocSnapshot.data(),
+                id: updatedDocSnapshot.id,
+            } as Book;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error("Error al actualizar el paciente:", error);
+        throw error;
+    }
+};
+
+
+// DELETE
+export const deleteBook = async (id: string) => {
+    try {
+        const docRef = doc(db, collectionName, id);
+        await deleteDoc(docRef);
+    } catch (error) {
+        console.error("Error deleting book:", error);
         throw error;
     }
 };
